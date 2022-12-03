@@ -1,0 +1,7 @@
+node_modules/*
+./node_modules/**
+**/node_modules/**
+webpack*
+postcss.config.js
+dist/*
+tailwind.config.js
