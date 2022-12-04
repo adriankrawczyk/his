@@ -55,7 +55,7 @@ export function addPhoto(obj) {
     canvas.add(img);
     const centerCoords = centerCoord();
     img.set({ originX: 'center', originY: 'center', hasBorders: false, hasControls: false, top: centerCoords.y + offsetY, left: offsetX + centerCoords.x, opacity: 0 });
-
+    //
     img.scaleToHeight(canvasContainer.clientHeight);
     canvas.requestRenderAll();
     photo1 = img;
