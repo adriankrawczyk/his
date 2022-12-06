@@ -17,7 +17,6 @@ $(document).ready(() => {
 $(window).resize(() => {
   canvas.setHeight(canvasContainer.clientHeight);
   canvas.setWidth(canvasContainer.clientWidth);
-  prevHeight = document.getElementById('top-panel').clientHeight;
 });
 canvas.selection = false;
 let photo1;
