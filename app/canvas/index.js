@@ -20,7 +20,7 @@ $(window).resize(() => {
 canvas.selection = false;
 let photo1;
 let photoIndex = 0;
-
+canvas.set({ objectCaching: false });
 canvas.setZoom(0.44);
 $(document).on('keydown', (e) => {
   if (e.keyCode === 70) {
@@ -31,8 +31,8 @@ $(document).on('keydown', (e) => {
       document.getElementById('mid-panel').classList.add('hidden');
       document.getElementById('top-panel').classList.add('hidden');
     }
-    canvas.setHeight(canvasContainer.clientHeight);
-    canvas.setWidth(canvasContainer.clientWidth);
+    canvas.setHeight(window.innerHeight);
+    canvas.setWidth(window.innerWidth);
     if (photo1) {
       photo1.scaleToHeight(canvasContainer.clientHeight);
       const centerCoords = centerCoord();
