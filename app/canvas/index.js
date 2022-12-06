@@ -22,6 +22,7 @@ let photo1;
 let photoIndex = 0;
 fabric.Object.prototype.objectCaching = false;
 canvas.setZoom(0.44);
+let bool = true;
 $(document).on('keydown', (e) => {
   if (e.keyCode === 122) {
     canvas.setHeight(window.innerHeight);
@@ -40,8 +41,8 @@ $(document).on('keydown', (e) => {
       document.getElementById('mid-panel').classList.add('hidden');
       document.getElementById('top-panel').classList.add('hidden');
     }
-    canvas.setHeight(window.innerHeight);
-    canvas.setWidth(window.innerWidth);
+    canvas.setHeight(canvasContainer.clientHeight);
+    canvas.setWidth(canvasContainer.clientWidth);
     if (photo1) {
       photo1.scaleToHeight(canvasContainer.clientHeight);
       const centerCoords = centerCoord();
@@ -49,6 +50,8 @@ $(document).on('keydown', (e) => {
     }
   }
   if (e.keyCode === 37 || e.keyCode === 39) {
+    if (!bool) return;
+    bool = false;
     for (let i = 1; i <= 100; i++) {
       setTimeout(() => {
         photo1.set({ opacity: (100 - i) / 100 });
@@ -91,6 +94,7 @@ export function addPhoto(obj) {
       setTimeout(() => {
         photo1.set({ opacity: i / 100 });
         canvas.requestRenderAll();
+        if (i === 100) bool = true;
       }, i * 5);
     }
   });

@@ -10,6 +10,7 @@ export default function midpanel() {
       { url: 'https://upload.wikimedia.org/wikipedia/commons/9/97/Podzia%C5%82_administracyjny_I_RP.png', width: 2000, offsetX: 0, offsetY: 0 },
       { url: 'https://ocdn.eu/pulscms-transforms/1/UUxktkqTURBXy8xZTcyZjczOWYxNzVlN2UwMjNkOTRmNzBkYTI0MGU1MS5qcGVnkpUDAAzNAyDNAcKTBc0EsM0CpA', width: 800, offsetX: 0, offsetY: 0 },
       { url: 'https://i.gremicdn.pl/image/free/ef565724f95c07deb7e1af90244ae691/?t=resize:fill:1200:716,enlarge:1', width: 800, offsetX: 0, offsetY: 0 },
+      { url: 'https://i.ibb.co/nCtDZ3T/a.png', width: 800, offsetX: 0, offsetY: 0 },
     ];
     fade(canvas.photos[0]);
   });
