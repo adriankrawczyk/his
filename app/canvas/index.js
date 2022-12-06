@@ -20,9 +20,18 @@ $(window).resize(() => {
 canvas.selection = false;
 let photo1;
 let photoIndex = 0;
-canvas.set({ objectCaching: false });
+fabric.Object.prototype.objectCaching = false;
 canvas.setZoom(0.44);
 $(document).on('keydown', (e) => {
+  if (e.keyCode === 122) {
+    canvas.setHeight(window.innerHeight);
+    canvas.setWidth(window.innerWidth);
+    if (photo1) {
+      photo1.scaleToHeight(canvasContainer.clientHeight);
+      const centerCoords = centerCoord();
+      photo1.set({ top: centerCoords.y, left: centerCoords.x });
+    }
+  }
   if (e.keyCode === 70) {
     if (document.getElementById('mid-panel').classList.contains('hidden')) {
       document.getElementById('mid-panel').classList.remove('hidden');
