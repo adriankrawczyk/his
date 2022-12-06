@@ -7,15 +7,17 @@ const canvas = new fabric.Canvas('canvas');
 canvas.set({ backgroundColor: 'khaki' });
 canvas.requestRenderAll();
 const canvasContainer = document.getElementById('canvas-wrapper');
-const prevHeight = document.getElementById('top-panel').clientHeight;
+let prevHeight;
 $(document).ready(() => {
   //Setting the size of canvas
   canvas.setHeight(canvasContainer.clientHeight);
   canvas.setWidth(canvasContainer.clientWidth);
+  prevHeight = document.getElementById('top-panel').clientHeight;
 });
 $(window).resize(() => {
   canvas.setHeight(canvasContainer.clientHeight);
   canvas.setWidth(canvasContainer.clientWidth);
+  prevHeight = document.getElementById('top-panel').clientHeight;
 });
 canvas.selection = false;
 let photo1;
@@ -37,11 +39,13 @@ $(document).on('keydown', (e) => {
     if (document.getElementById('mid-panel').classList.contains('hidden')) {
       document.getElementById('mid-panel').classList.remove('hidden');
       document.getElementById('top-panel').classList.remove('hidden');
+      canvas.setHeight(canvasContainer.clientHeight - prevHeight * 1.5);
     } else {
       document.getElementById('mid-panel').classList.add('hidden');
       document.getElementById('top-panel').classList.add('hidden');
+      canvas.setHeight(canvasContainer.clientHeight);
     }
-    canvas.setHeight(canvasContainer.clientHeight);
+
     canvas.setWidth(canvasContainer.clientWidth);
     if (photo1) {
       photo1.scaleToHeight(canvasContainer.clientHeight);
