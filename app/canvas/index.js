@@ -7,6 +7,7 @@ const canvas = new fabric.Canvas('canvas');
 canvas.set({ backgroundColor: 'khaki' });
 canvas.requestRenderAll();
 const canvasContainer = document.getElementById('canvas-wrapper');
+const prevHeight = document.getElementById('top-panel').clientHeight;
 $(document).ready(() => {
   //Setting the size of canvas
   canvas.setHeight(canvasContainer.clientHeight);
@@ -22,6 +23,22 @@ let photoIndex = 0;
 
 canvas.setZoom(0.44);
 $(document).on('keydown', (e) => {
+  if (e.keyCode === 70) {
+    if (document.getElementById('mid-panel').classList.contains('hidden')) {
+      document.getElementById('mid-panel').classList.remove('hidden');
+      document.getElementById('top-panel').classList.remove('hidden');
+    } else {
+      document.getElementById('mid-panel').classList.add('hidden');
+      document.getElementById('top-panel').classList.add('hidden');
+    }
+    canvas.setHeight(canvasContainer.clientHeight);
+    canvas.setWidth(canvasContainer.clientWidth);
+    if (photo1) {
+      photo1.scaleToHeight(canvasContainer.clientHeight);
+      const centerCoords = centerCoord();
+      photo1.set({ top: centerCoords.y, left: centerCoords.x });
+    }
+  }
   if (e.keyCode === 37 || e.keyCode === 39) {
     for (let i = 1; i <= 100; i++) {
       setTimeout(() => {
@@ -49,13 +66,15 @@ export function fade(obj) {
     }
   } else addPhoto(obj);
 }
+
 export function addPhoto(obj) {
   const { url, width, offsetX, offsetY } = obj;
+
   fabric.Image.fromURL(url, (img) => {
     canvas.add(img);
     const centerCoords = centerCoord();
     img.set({ originX: 'center', originY: 'center', hasBorders: false, hasControls: false, top: centerCoords.y + offsetY, left: offsetX + centerCoords.x, opacity: 0 });
-    ////
+
     img.scaleToHeight(canvasContainer.clientHeight);
     canvas.requestRenderAll();
     photo1 = img;
