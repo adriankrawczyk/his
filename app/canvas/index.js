@@ -21,18 +21,22 @@ $(window).resize(() => {
 canvas.selection = false;
 let photo1;
 let photoIndex = 0;
+addPhoto({ url: 'https://cdn.discordapp.com/attachments/696659588791009351/1050172481731829812/image.png', width: 2000, offsetX: 0, offsetY: 0 });
+
 fabric.Object.prototype.objectCaching = false;
 canvas.setZoom(0.44);
 let bool = true;
 $(document).on('keydown', (e) => {
   if (e.keyCode === 122) {
-    canvas.setHeight(window.innerHeight);
-    canvas.setWidth(window.innerWidth);
-    if (photo1) {
-      photo1.scaleToHeight(canvasContainer.clientHeight);
-      const centerCoords = centerCoord();
-      photo1.set({ top: centerCoords.y, left: centerCoords.x });
-    }
+    setTimeout(() => {
+      canvas.setHeight(window.innerHeight);
+      canvas.setWidth(window.innerWidth);
+      if (photo1) {
+        photo1.scaleToHeight(canvasContainer.clientHeight);
+        const centerCoords = centerCoord();
+        photo1.set({ top: centerCoords.y, left: centerCoords.x });
+      }
+    }, 10);
   }
   if (e.keyCode === 70) {
     if (document.getElementById('mid-panel').classList.contains('hidden')) {
@@ -53,7 +57,7 @@ $(document).on('keydown', (e) => {
     }
   }
   if (e.keyCode === 37 || e.keyCode === 39) {
-    if (!bool) return;
+    if (!bool || !canvas.photos) return;
     bool = false;
     for (let i = 1; i <= 100; i++) {
       setTimeout(() => {
