@@ -14,13 +14,20 @@ $(document).ready(() => {
   canvas.setWidth(canvasContainer.clientWidth);
   prevHeight = document.getElementById('top-panel').clientHeight;
 });
+let photoIndex = 0;
+let photo1;
 $(window).resize(() => {
   canvas.setHeight(canvasContainer.clientHeight);
   canvas.setWidth(canvasContainer.clientWidth);
+
+  if (photo1) {
+    photo1.scaleToHeight(canvasContainer.clientHeight);
+    const centerCoords = centerCoord();
+    photo1.set({ top: centerCoords.y, left: centerCoords.x });
+  }
 });
 canvas.selection = false;
-let photo1;
-let photoIndex = 0;
+
 addPhoto({ url: 'https://cdn.discordapp.com/attachments/696659588791009351/1050172481731829812/image.png', width: 2000, offsetX: 0, offsetY: 0 });
 
 fabric.Object.prototype.objectCaching = false;
